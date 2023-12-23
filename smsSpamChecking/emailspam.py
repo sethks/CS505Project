@@ -10,13 +10,13 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report
 
 # Download NLTK data
-nltk.download('stopwords')
-nltk.download('wordnet')
-nltk.download('punkt')
+# nltk.download('stopwords')
+# nltk.download('wordnet')
+# nltk.download('punkt')
 
 try:
     # Reading the CSV file, ignore 3rd column onwards
-    data = pd.read_csv("smsSpamChecking/spam.csv", usecols=[0, 1], header=0, names=['label', 'message'])
+    data = pd.read_csv("/Users/sabeernarula/Desktop/CS505 Final Project/CS505Project-1/smsSpamChecking/spam.csv", usecols=[0, 1], header=0, names=['label', 'message'])
 except pd.errors.ParserError as e:
     print(f"Error reading the CSV file: {e}")
 
@@ -69,9 +69,9 @@ training_data = data[:split_idx]
 validation_data = data[split_idx:]
 
 # save validation dataset
-validation_data.to_csv('smsSpamChecking/validation.csv', index=False)
+validation_data.to_csv('/Users/sabeernarula/Desktop/CS505 Final Project/CS505Project-1/smsSpamChecking/validation.csv', index=False)
 
-validation_data = pd.read_csv('smsSpamChecking/validation.csv')
+validation_data = pd.read_csv('/Users/sabeernarula/Desktop/CS505 Final Project/CS505Project-1/smsSpamChecking/validation.csv')
 
 # Drop NA rows
 validation_data = validation_data.dropna(subset=['message'])
@@ -100,7 +100,7 @@ predict_and_evaluate(lr_model, X_validation, y_validation)
 
 
 # try sample dataset (all normal texts, no spam) - detecting false positives
-new_data = pd.read_csv('smsSpamChecking/output.csv', header=None, names=['message'])
+new_data = pd.read_csv('/Users/sabeernarula/Desktop/CS505 Final Project/CS505Project-1/smsSpamChecking/output.csv', header=None, names=['message'])
 
 # preprocess
 new_data['message'] = new_data['message'].apply(preprocess_text)
@@ -127,3 +127,18 @@ print(f"Naive Bayes - Ham: {nb_ham_percentage}%, Spam: {nb_spam_percentage}%")
 # Calculate percentages for LR
 lr_ham_percentage, lr_spam_percentage = calculate_percentages(lr_predictions)
 print(f"Logistic Regression - Ham: {lr_ham_percentage}%, Spam: {lr_spam_percentage}%")
+
+
+
+###############################
+
+import pickle
+
+with open('vectorizer.pkl', 'wb') as f:
+    pickle.dump(vectorizer, f)
+
+with open('nb_model.pkl', 'wb') as f:
+    pickle.dump(nb_model, f)
+
+with open('lr_model.pkl', 'wb') as f:
+    pickle.dump(lr_model, f)
