@@ -66,3 +66,4 @@ print("Sample LR Predictions:", lr_predictions[:10])
 
 #ignore this
 # y = data.iloc[:, -1] # last column
+##ignoreee
