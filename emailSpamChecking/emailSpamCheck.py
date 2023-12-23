@@ -1,5 +1,6 @@
 import pandas as pd
 import re
+import pickle
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import LogisticRegression
@@ -67,3 +68,14 @@ print("Sample LR Predictions:", lr_predictions[:10])
 #ignore this
 # y = data.iloc[:, -1] # last column
 ##ignoreee
+
+############################################
+
+with open('vectorizer.pkl', 'rb') as vectr:
+    pickle.dump(vectorizer, vectr)
+
+with open('email_nb_model.pkl', 'rb') as model_file:
+    pickle.dump(nb_model, model_file)
+
+with open('email_lr_model.pkl', 'rb') as lr_model_file:
+    pickle.dump(lr_model, lr_model_file)

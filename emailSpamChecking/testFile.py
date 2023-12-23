@@ -41,7 +41,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 # Function to preprocess the emails
 def preprocess_email(raw_email):
-    pattern = r"X-FileName:.*\n\n(.*)"  # Adjust the pattern if needed
+    pattern = r"X-FileName:.*\n\n(.*)" 
     match = re.search(pattern, raw_email, re.DOTALL)
     email_body = match.group(1).strip() if match else raw_email.strip()
     return email_body
