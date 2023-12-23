@@ -20,7 +20,7 @@ def evaluate_model(model, x_test, y_test):
     print(f"Classification Report:\n{classification_report(y_test, y_pred)}")
 
 # Load and preprocess the new dataset from emails_v2.csv (emails_v2_smaller.csv is a smaller version of emails_v2.csv for testing. The whole file is emails_v2.csv)
-emails_v2_smaller = pd.read_csv("emailSpamChecking/emails_v2.csv")
+emails_v2_smaller = pd.read_csv("emailSpamChecking/emails_v2_smaller.csv")
 emails_v2_smaller['cleaned_message'] = emails_v2_smaller['message'].apply(preprocess_email)
 
 # Load and prepare the training data from emails_v1.csv
@@ -53,7 +53,7 @@ feature_names = data.columns[:-1]  # All columns except the last one (label)
 # Initialize the CountVectorizer with the same features
 vectorizer = CountVectorizer(vocabulary=feature_names)
 
-# Fit and transform the cleaned messages of emails_v2_.csv (again, this emails_v2_smaller.csv is the smaller version)
+# Fit and transform the cleaned messages of emails_v2_.csv (again, this is emails_v2_smaller.csv, the real file would have the emails_v2.csv as the argument)
 emails_v2_features = vectorizer.transform(emails_v2_smaller['cleaned_message'])
 
 # Use the trained models to predict
