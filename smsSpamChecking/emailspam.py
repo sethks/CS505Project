@@ -16,7 +16,7 @@ nltk.download('punkt')
 
 try:
     # Reading the CSV file, ignore 3rd column onwards
-    data = pd.read_csv("spam.csv", usecols=[0, 1], header=0, names=['label', 'message'])
+    data = pd.read_csv("smsSpamChecking/spam.csv", usecols=[0, 1], header=0, names=['label', 'message'])
 except pd.errors.ParserError as e:
     print(f"Error reading the CSV file: {e}")
 
@@ -69,9 +69,9 @@ training_data = data[:split_idx]
 validation_data = data[split_idx:]
 
 # save validation dataset
-validation_data.to_csv('validation.csv', index=False)
+validation_data.to_csv('smsSpamChecking/validation.csv', index=False)
 
-validation_data = pd.read_csv('validation.csv')
+validation_data = pd.read_csv('smsSpamChecking/validation.csv')
 
 # Drop NA rows
 validation_data = validation_data.dropna(subset=['message'])
@@ -100,7 +100,7 @@ predict_and_evaluate(lr_model, X_validation, y_validation)
 
 
 # try sample dataset (all normal texts, no spam) - detecting false positives
-new_data = pd.read_csv('output.csv', header=None, names=['message'])
+new_data = pd.read_csv('smsSpamChecking/output.csv', header=None, names=['message'])
 
 # preprocess
 new_data['message'] = new_data['message'].apply(preprocess_text)
