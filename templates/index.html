@@ -57,7 +57,7 @@
         <button id="smsButton">SMS Spam Checker</button>
         <button id="emailButton">Email Spam Checker</button>
 
-        <!-- SMS Form, initially hidden -->
+        <!-- SMS Form, initially hidden until the user decides what they want.-->
         <div id="smsForm" style="display:none;">
             <form id="form_sms" method="POST">
                 <label for="message">Enter SMS Message:</label><br>
@@ -66,7 +66,7 @@
             </form>
         </div>
 
-        <!-- Email Form, initially hidden -->
+        <!-- Email Form, initially hidden until the user decides what they want.-->
         <div id="emailForm" style="display:none;">
             <form id="form_email" method="POST">
                 <label for="email">Enter Email:</label><br>
@@ -84,26 +84,30 @@
 
     <script>
         // Function to clear previous results
-        function clearResults() {
+        function clearResults() 
+        {
             document.getElementById('prediction').innerText = '';
             document.getElementById('confidence').innerText = '';
             document.getElementById('result').style.display = 'none';
         }
     
-        document.getElementById('smsButton').onclick = function() {
+        document.getElementById('smsButton').onclick = function() 
+        {
             clearResults();
             document.getElementById('smsForm').style.display = 'block';
             document.getElementById('emailForm').style.display = 'none';
         };
     
-        document.getElementById('emailButton').onclick = function() {
+        document.getElementById('emailButton').onclick = function() 
+        {
             clearResults();
             document.getElementById('emailForm').style.display = 'block';
             document.getElementById('smsForm').style.display = 'none';
         };
     
         // Handle form submission for SMS
-        document.getElementById('form_sms').onsubmit = function(event) {
+        document.getElementById('form_sms').onsubmit = function(event) 
+        {
             event.preventDefault();
             var formData = new FormData(this);
             fetch('/check_sms', {
@@ -120,7 +124,8 @@
         };
     
         // Handle form submission for Email
-        document.getElementById('form_email').onsubmit = function(event) {
+        document.getElementById('form_email').onsubmit = function(event) 
+        {
             event.preventDefault();
             var formData = new FormData(this);
             fetch('/check_email', {

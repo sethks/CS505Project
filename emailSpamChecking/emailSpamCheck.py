@@ -70,11 +70,11 @@ print("Sample LR Predictions:", lr_predictions[:10])
 
 ############################################
 
-with open('vectorizer.pkl', 'rb') as vectr:
-    pickle.dump(vectorizer, vectr)
+# with open('vectorizer.pkl', 'rb') as vectr:
+#     pickle.dump(vectorizer, vectr)
 
-with open('email_nb_model.pkl', 'rb') as model_file:
-    pickle.dump(nb_model, model_file)
+# with open('email_nb_model.pkl', 'rb') as model_file:
+#     pickle.dump(nb_model, model_file)
 
-with open('email_lr_model.pkl', 'rb') as lr_model_file:
-    pickle.dump(lr_model, lr_model_file)
+# with open('email_lr_model.pkl', 'rb') as lr_model_file:
+#     pickle.dump(lr_model, lr_model_file)
