@@ -69,8 +69,8 @@ def predict_sms(message):
     probabilities = nb_model.predict_proba(vectorized_message)
     confidence = max(probabilities[0])
 
-    # Determine final prediction (you can combine or choose one model's prediction)
-    final_prediction = 'spam' if prediction_nb[0] == 1 else 'not spam'
+
+    final_prediction = 'spam' if prediction_lr[0] == 1 else 'not spam'
 
     return final_prediction, confidence
 

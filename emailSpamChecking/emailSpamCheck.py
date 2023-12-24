@@ -9,7 +9,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 # Function to preprocess the emails and clean up the unneccesaary data
 def preprocess_email(raw_email):
-    pattern = r"X-FileName:.*\n\n(.*)"  # Adjust the pattern if needed
+    pattern = r"X-FileName:.*\n\n(.*)"
     match = re.search(pattern, raw_email, re.DOTALL)
     email_body = match.group(1).strip() if match else raw_email.strip()
     return email_body
@@ -61,7 +61,6 @@ emails_v2_features = vectorizer.transform(emails_v2_smaller['cleaned_message'])
 nb_predictions = nb_model.predict(emails_v2_features)
 lr_predictions = lr_model.predict(emails_v2_features)
 
-# Print out a sample of the predictions
 print("Sample NB Predictions:", nb_predictions[:10])
 print("Sample LR Predictions:", lr_predictions[:10])
 
