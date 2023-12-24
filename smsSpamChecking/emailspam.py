@@ -50,8 +50,10 @@ lr_model.fit(X_train, y_train)
 # Evaluate Models
 def evaluate_model(model, X_test, y_test):
     y_pred = model.predict(X_test)
-    print(f"Accuracy: {accuracy_score(y_test, y_pred)}")
+    accuracy = accuracy_score(y_test, y_pred)
+    print(f"Accuracy: {accuracy}")
     print(f"Classification Report:\n{classification_report(y_test, y_pred)}")
+    return accuracy
 
 print("Naive Bayes Model Evaluation")
 evaluate_model(nb_model, X_test, y_test)
@@ -87,6 +89,16 @@ def predict_and_evaluate(model, X, y_true):
     accuracy = accuracy_score(y_true, y_pred)
     print(f"Accuracy: {accuracy}")
     print(f"Classification Report:\n{classification_report(y_true, y_pred)}")
+    return accuracy
+
+
+# Evaluating and storing accuracies
+nb_test_accuracy = evaluate_model(nb_model, X_test, y_test)
+lr_test_accuracy = evaluate_model(lr_model, X_test, y_test)
+
+nb_val_accuracy = predict_and_evaluate(nb_model, X_validation, y_validation)
+lr_val_accuracy = predict_and_evaluate(lr_model, X_validation, y_validation)
+
 
 # test NB
 print("Naive Bayes on Validation Data")
@@ -142,3 +154,25 @@ with open('nb_model.pkl', 'wb') as f:
 
 with open('lr_model.pkl', 'wb') as f:
     pickle.dump(lr_model, f)
+
+
+
+#######################
+
+# import matplotlib.pyplot as plt
+
+# models = ['Naive Bayes', 'Logistic Regression']
+# test_accuracies = [nb_test_accuracy, lr_test_accuracy]
+# val_accuracies = [nb_val_accuracy, lr_val_accuracy]
+
+# x = range(len(models))
+# plt.bar(x, test_accuracies, width=0.4, label='Test', align='center')
+# plt.bar(x, val_accuracies, width=0.4, label='Validation', align='edge')
+
+# plt.xlabel('Models')
+# plt.ylabel('Accuracy')
+# plt.title('Model Accuracies on Test and Validation Data')
+# plt.xticks(x, models)
+# plt.legend()
+
+# plt.show()
